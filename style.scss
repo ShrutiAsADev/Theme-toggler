@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;900&display=swap");
+
+$transition: background-color 300ms ease, color 500ms ease;
+
+*,
+*::after,
+*::before 
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font: 1.025rem "Nunito", sans-serif;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background-color: var(--bg-b);
+    transition: $transition;
+}
+
+// Themes
+.light {
+    --bg-b: #eee;
+    --bg-box: #fff;
+    --fg: #333;
+    --fg-h: #000;
+}
+
+.dark {
+    --bg-b: #222;
+    --bg-box: #333;
+    --fg: #eee;
+    --fg-h: #fff;
+}
+
+.box {
+    padding: 1rem;
+    position: relative;
+    box-shadow: 0 0 1.3rem rgba(#000, .1);
+    max-width: 60ch;
+    width: max(80%, 250px);
+    max-height: 350px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto 1fr 1fr;
+    background-color: var(--bg-box);
+    transition: $transition;
+
+    h1 {
+        margin-top: 2.5rem;
+        color: var(--fg-h);
+        grid-row: 2 / -2;
+        grid-column: 1 / -1;
+    }
+
+    p {
+        color: var(--fg);
+        grid-row: 3 / -2;
+        grid-column: 1 / -1;
+    }
+
+    .toggler {
+        grid-row: 1;
+        grid-column: -1;
+        transition: background-color 200ms ease;
+
+        &::after {
+            $h: 20px;
+            $gutter: 5px;
+            content: "";
+            position: absolute;
+            top: $gutter;
+            left: $gutter;
+            bottom: $gutter;
+            height: $h;
+            width: 20px;
+            background-color: #fff;
+            border-radius: $h;
+            transition: 
+                width 170ms,
+                transform 200ms,
+                left 200ms
+            ;
+        }
+    }
+    
+    #toggler {
+        display: none;
+    }
+
+    #toggler + label {
+        $h: 30px;
+        position: absolute;
+        height: $h;
+        width: 60px;
+        border-radius: $h;
+        background-color: #cccccc;
+        right: .5rem;
+        top: 0;
+    }
+
+    #toggler:checked + label {
+        background-color: #555;
+
+        &::after {
+            left: calc(100% - 5px);
+            transform: translateX(-100%);
+            background-color: #777;
+        }
+    }
+}

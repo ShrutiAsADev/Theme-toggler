@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;900&display=swap");
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: 1.025rem "Nunito", sans-serif;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: var(--bg-b);
+  transition: background-color 300ms ease, color 500ms ease;
+}
+
+.light {
+  --bg-b: #eee;
+  --bg-box: #fff;
+  --fg: #333;
+  --fg-h: #000;
+}
+
+.dark {
+  --bg-b: #222;
+  --bg-box: #333;
+  --fg: #eee;
+  --fg-h: #fff;
+}
+
+.box {
+  padding: 1rem;
+  position: relative;
+  box-shadow: 0 0 1.3rem rgba(0, 0, 0, 0.1);
+  max-width: 60ch;
+  width: max(80%, 250px);
+  max-height: 300px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 1fr 1fr;
+  background-color: var(--bg-box);
+  transition: background-color 300ms ease, color 500ms ease;
+}
+.box h1 {
+  margin-top: 2.5rem;
+  color: var(--fg-h);
+  grid-row: 2/-2;
+  grid-column: 1/-1;
+}
+.box p {
+  color: var(--fg);
+  grid-row: 3/-2;
+  grid-column: 1/-1;
+}
+.box .toggler {
+  grid-row: 1;
+  grid-column: -1;
+  transition: background-color 200ms ease;
+}
+.box .toggler::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  bottom: 5px;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  transition: width 170ms, transform 200ms, left 200ms;
+}
+.box #toggler {
+  display: none;
+}
+.box #toggler + label {
+  position: absolute;
+  height: 30px;
+  width: 60px;
+  border-radius: 30px;
+  background-color: #cccccc;
+  right: 0.5rem;
+  top: 0;
+}
+.box #toggler:checked + label {
+  background-color: #555;
+}
+.box #toggler:checked + label::after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+  background-color: #777;
+}
+
+/*# sourceMappingURL=style.css.map */
